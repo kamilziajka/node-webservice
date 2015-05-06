@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://server.soap.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="ClientServiceService" targetNamespace="http://server.soap.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="http://server.soap.com/" version="1.0" />
+  </types>
+  <message name="addClient">
+    <part name="name" element="xsd:string" />
+  </message>
+  <message name="addClientResponse">
+    <part name="return" element="xsd:string" />
+  </message>
+  <message name="getClients">
+    <part name="name" element="xsd:string" />
+  </message>
+  <message name="getClientsResponse">
+    <part name="return" element="xsd:string[]" />
+  </message>
+  <portType name="ClientService">
+    <operation name="addClient">
+      <input wsam:Action="addClient" message="tns:addClient" />
+      <output wsam:Action="http://server.soap.com/ClientService/addClientResponse" message="tns:addClientResponse" />
+    </operation>
+    <operation name="getClients">
+      <input wsam:Action="getClients" message="tns:getClients" />
+      <output wsam:Action="http://server.soap.com/ClientService/getClientsResponse" message="tns:getClientsResponse" />
+    </operation>
+  </portType>
+  <binding name="ClientServicePortBinding" type="tns:ClientService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="addClient">
+      <soap:operation soapAction="addClient" />
+      <input name="addClient">
+        <soap:body use="literal" />
+      </input>
+      <output name="addClientResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getClients">
+      <soap:operation soapAction="getClients" />
+      <input name="getClients">
+        <soap:body use="literal" />
+      </input>
+      <output name="getClientsResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ClientServiceService">
+    <port name="ClientServicePort" binding="tns:ClientServicePortBinding">
+      <soap:address location="http://127.0.0.1:1337/ClientService" />
+    </port>
+  </service>
+</definitions>
