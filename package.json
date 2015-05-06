@@ -1,0 +1,7 @@
+{
+  "name": "node-webservice",
+  "version": "1.0.0",
+  "dependencies": {
+    "soap-server": "^0.1.0"
+  }
+}
